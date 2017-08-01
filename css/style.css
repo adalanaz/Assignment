@@ -1,0 +1,21 @@
+img{
+  width: 100%;
+}
+.featuredImage{
+  max-height: 400px;
+}
+.text-center{
+  text-align: center;
+}
+.text-justify{
+  text-align: justify;
+}
+.text{
+  padding: 5px 15px;
+}
+#comment>input{
+  color: #fff;
+}
+.closeModel{
+  background: red;
+}

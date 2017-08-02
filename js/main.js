@@ -25,7 +25,6 @@ function closeModel() {
 
 //------------------------------------------------------------------------------------------------------
 
-//--
 
 // -
 // Page One Event Listeners
@@ -34,11 +33,9 @@ document.addEventListener('init', function(event) {
   var page = event.target;
 
   if (page.id === 'page1') {
-    page.querySelector('#push-button').onclick = function() {
-      document.querySelector('#myNavigator').pushPage('topic 1.html', {data: {title: 'Posts'}});
+      page.querySelector('#push-button').onclick = function() {
+      document.querySelector('#myNavigator').pushPage('posts.html', {data: {title: 'Posts'}});
     };
-  } else if (page.id === 'page2') {
-    page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
   }
 
   if (page.id === 'page2') {

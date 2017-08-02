@@ -10,6 +10,9 @@ img{
 .text-justify{
   text-align: justify;
 }
+.title{
+  text-align: center;
+}
 .text{
   padding: 5px 15px;
 }
@@ -18,4 +21,24 @@ img{
 }
 .closeModel{
   background: red;
+}
+.avatar{
+  vertical-align: middle;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  width: 70px;
+  height: auto;
+  margin: 0 auto;
+  text-align: center;
+  display: block;
+}
+.comments p{
+  padding: 10px 15px;
+  text-align: justify;
+}
+.single-comment{
+  border-top: 1px dotted black;
+}
+.newPostModel input{
+  color: #fff !important;
 }

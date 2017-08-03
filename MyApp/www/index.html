@@ -1,22 +1,5 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
 
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <!--
@@ -28,21 +11,255 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"> -->
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+
+        <!-- <link rel="stylesheet" type="text/css" href="css/onsenui.min.css">
+        <link rel="stylesheet" type="text/css" href="css/onsen-css-components.min.css">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script> -->
+
+        <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+        <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+        <link rel="stylesheet" href="css/style.css">
+        <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+        <script src="https://unpkg.com/jquery/dist/jquery.min.js"></script>
+
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+
+
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        <!-- Main Navigation -->
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+
+        <ons-navigator swipeable id="myNavigator" page='home.html'></ons-navigator>
+
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+        <!-- Navigation  -->
+        <!-- ------------------------------------------------------------------------------------------------------- -->
+
+
+          <!-- ------------------------------------------------------------------------------------------------------- -->
+          <!-- Home Page  -->
+          <!-- ------------------------------------------------------------------------------------------------------- -->
+
+          <template id="home.html">
+            <ons-page id="page1">
+              <!-- Toolbar -->
+              <ons-toolbar>
+                <div class="left">
+                  <ons-toolbar-button onclick="fn.open()">
+                    <ons-icon icon="md-menu"></ons-icon>
+                  </ons-toolbar-button>
+                </div>
+                <div class="center">
+                  Forum
+                </div>
+                <div class="right">
+
+                </div>
+              </ons-toolbar>
+              <!-- Toolbar end -->
+
+
+
+              <ons-list-item modifier="chevron" id="push-button"  tappable>Topic 1</ons-list-item>
+              <ons-list-item modifier="chevron" tappable>Topic 2</ons-list-item>
+              <ons-list-item modifier="chevron" tappable>Topic 3</ons-list-item>
+
+
+
+            </ons-page>
+          </template>
+          <!-- ------------------------------------------------------------------------------------------------------- -->
+          <!-- End of Home Page  -->
+          <!-- ------------------------------------------------------------------------------------------------------- -->
+
+
+            <!-- ------------------------------------------------------------------------------------------------------- -->
+            <!-- Posts Page  -->
+            <!-- ------------------------------------------------------------------------------------------------------- -->
+            <template id="posts.html">
+              <ons-page id="page2">
+                <ons-toolbar>
+                  <div class="left">
+                    <ons-toolbar-button onclick="fn.open()">
+                      <ons-back-button>Page 1</ons-back-button>
+                    </ons-toolbar-button>
+                  </div>
+                  <div class="center">
+                    Topic 1
+                  </div>
+                </ons-toolbar>
+
+                <ons-list-item tappable id="push-button">
+                  <div class="left">
+                    <img class="list-item__thumbnail" src="http://placekitten.com/g/40/40">
+                  </div>
+                  <div class="center">
+                    <span class="list-item__title">Cutest kitty</span><span class="list-item__subtitle">On the Internet</span>
+                  </div>
+                </ons-list-item>
+
+                <!-- Add new Post Button -->
+                <ons-fab position="bottom right" >
+                  <ons-icon icon="md-plus" onclick="showModal()"></ons-icon>
+                </ons-fab>
+                <!-- End of Add new Post Button -->
+
+                <!-- Comment Model -->
+                <ons-modal direction="up">
+                  <div class="newPostModel" style="text-align: center; margin-top: 30px;">
+                    <p>
+                      <ons-input id="title" modifier="material" placeholder="Post Title" float></ons-input>
+                    </p>
+                    <p>
+                      <ons-input id="description" modifier="material" placeholder="Description" float></ons-input>
+                    </p>
+                    <p style="margin-top: 30px;">
+                      <ons-button onclick="closeModel()">Create Post</ons-button>
+                    </p>
+                  </div>
+                  <!-- Close Button -->
+                  <ons-fab class="closeModel" position="bottom right">
+                    <ons-icon icon="md-minus" onclick="closeModel()"></ons-icon>
+                  </ons-fab>
+                  <!-- Close Button -->
+                </ons-modal>
+                <!-- End of Comment Model -->
+
+              </ons-page>
+            </template>
+            <!-- ------------------------------------------------------------------------------------------------------- -->
+            <!-- End of Posts Page  -->
+            <!-- ------------------------------------------------------------------------------------------------------- -->
+
+
+              <!-- ------------------------------------------------------------------------------------------------------- -->
+              <!-- Post Content Page  -->
+              <!-- ------------------------------------------------------------------------------------------------------- -->
+              <template id="content.html">
+                <ons-page id="page3">
+                  <ons-toolbar>
+                    <div class="left">
+                      <ons-toolbar-button onclick="fn.open()">
+                        <ons-back-button>Page 1</ons-back-button>
+                      </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                      Topic 1
+                    </div>
+                  </ons-toolbar>
+
+                  <ons-card>
+                      <img src="http://lorempixel.com/output/cats-q-c-640-480-8.jpg" class="featuredImage"/>
+                    <div class="title">
+                      Sample Title Text
+                    </div>
+                    <div class="content">
+                      <p class="text-justify">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum rutrum nisl ornare  eros sit amet, vulputate est. Suspendisse dapibus a urna eget gravida. Aliquam erat volutpat. Vestibulum sed bibendum velit, et euismod sem. Praesent eget metus purus.</p>
+                      <p class="text-justify">consectetur adipiscing elit. Vestibulum rutrum nisl ornare  eros sit amet, vulputate est. Suspendisse dapibus a urna eget gravida. Aliquam erat volutpat. Vestibulum sed bibendum velit, et euismod sem. Praesent eget metus purus.</p>
+                    </div>
+                    <div class="comments">
+                      <h1 class="text-center">Comments</h1>
+                      <ons-row class="single-comment">
+                        <ons-col width="25%">
+                          <img class="avatar" src="img/avatar.png" />
+                        </ons-col>
+                        <ons-col width="75%">
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in massa sit amet nunc dapibus tincidunt. </p>
+                        </ons-col>
+                        <ons-col width="100%">
+                          <p>Author: <ons-button modifier="quiet" id="push-button" >Tim Cook</ons-button> | 16-07-2017</p>
+                        </ons-col>
+                      </ons-row>
+                      <ons-row class="single-comment">
+                        <ons-col width="25%">
+                          <img class="avatar" src="img/avatar.png" />
+                        </ons-col>
+                        <ons-col width="75%">
+                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse in massa sit amet nunc dapibus tincidunt. </p>
+                        </ons-col>
+                        <ons-col width="100%">
+                          <p>Author: Tim Cook | 16-07-2017</p>
+                        </ons-col>
+                      </ons-row>
+                    </div>
+                  </ons-card>
+
+
+                  <!-- Add new Comment Button -->
+                  <ons-fab position="bottom left">
+                    <ons-icon icon="md-plus" onclick="showCommentModel()"></ons-icon>
+                  </ons-fab>
+                  <!-- End of Add new Comment Button -->
+
+
+                  <!-- Comment Model -->
+                  <ons-modal id="comment"  direction="up" >
+
+                    <div style="text-align: center; margin-top: 30px;">
+                      <p>
+                        <ons-input id="comment" modifier="material" placeholder="comment" float></ons-input>
+                      </p>
+                      <p style="margin-top: 30px;">
+                        <ons-button onclick="closeModel()">Comment</ons-button>
+                      </p>
+                    </div>
+
+                    <!-- Close Button -->
+                      <ons-fab class="closeModel" position="bottom right">
+                      <ons-icon icon="md-minus" onclick="closeCommentModel()"></ons-icon>
+                    </ons-fab>
+                    <!-- Close Button -->
+
+                  </ons-modal>
+                  <!-- End of Comment Model -->
+
+                </ons-page>
+              </template>
+              <!-- ------------------------------------------------------------------------------------------------------- -->
+              <!-- Post Content Page  -->
+              <!-- ------------------------------------------------------------------------------------------------------- -->
+
+              <!-- ------------------------------------------------------------------------------------------------------- -->
+              <!-- Profile Page  -->
+              <!-- ------------------------------------------------------------------------------------------------------- -->
+
+              <template id="profile.html">
+                <ons-page id="page4">
+                  <!-- Toolbar -->
+                  <ons-toolbar>
+                    <div class="left">
+                      <ons-toolbar-button onclick="fn.open()">
+                        <ons-icon icon="md-menu"></ons-icon>
+                      </ons-toolbar-button>
+                    </div>
+                    <div class="center">
+                      Forum
+                    </div>
+                    <div class="right">
+
+                    </div>
+                  </ons-toolbar>
+                  <!-- Toolbar end -->
+
+                  
+
+
+
+                </ons-page>
+              </template>
+              <!-- ------------------------------------------------------------------------------------------------------- -->
+              <!-- End of Profile Page  -->
+              <!-- ------------------------------------------------------------------------------------------------------- -->
+
+
+
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>

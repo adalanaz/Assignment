@@ -1,46 +1,90 @@
-/*
- * Licensed to the Apache Software Foundation (ASF) under one
- * or more contributor license agreements.  See the NOTICE file
- * distributed with this work for additional information
- * regarding copyright ownership.  The ASF licenses this file
- * to you under the Apache License, Version 2.0 (the
- * "License"); you may not use this file except in compliance
- * with the License.  You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing,
- * software distributed under the License is distributed on an
- * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
- * KIND, either express or implied.  See the License for the
- * specific language governing permissions and limitations
- * under the License.
- */
-var app = {
-    // Application Constructor
-    initialize: function() {
-        document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-    },
+//------------------------------------------------------------------------------------------------------
 
-    // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
-    onDeviceReady: function() {
-        this.receivedEvent('deviceready');
-    },
+// -
+//   Modal
+// -
+function showModal() {
+  var modal = document.querySelector(".modal").closest('ons-modal');
+  modal.show();
+}
+//------------------------------------------------------------------------------------------------------
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+// -
+// Close Model function
+// -
+function closeModel() {
+  var modal = document.querySelector('ons-modal');
+  modal.hide();
+}
+//------------------------------------------------------------------------------------------------------
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+// -
+//   Modal
+// -
+function showCommentModel() {
+  var modal = document.querySelector('#comment');
+  modal.show();
+}
+//------------------------------------------------------------------------------------------------------
+// -
+// Comment function
+// -
+function comment() {
+  var modal = document.querySelector('#comment');
+  modal.hide();
+}
+//------------------------------------------------------------------------------------------------------
 
-        console.log('Received Event: ' + id);
-    }
-};
+// -
+// Close Model function
+// -
+function closeCommentModel() {
+  var modal = document.querySelector('#comment');
+  modal.hide();
+}
+//------------------------------------------------------------------------------------------------------
 
-app.initialize();
+// -
+//   Profile Model
+// -
+function showProfilePage() {
+  var modal = document.querySelector('#profile');
+  modal.show();
+}
+//------------------------------------------------------------------------------------------------------
+
+
+function testClick() {
+  console.log('click working');
+}
+
+
+ // -
+ // Page One Event Listeners
+ // -
+ document.addEventListener('init', function(event) {
+   var page = event.target;
+
+   if (page.id === 'page1') {
+       page.querySelector('#push-button').onclick = function() {
+       document.querySelector('#myNavigator').pushPage('posts.html', {data: {title: 'Posts'}});
+     };
+   }
+
+   if (page.id === 'page2') {
+      page.querySelector('#push-button').onclick = function() {
+       document.querySelector('#myNavigator').pushPage('content.html', {data: {title: 'Content'}});
+     };
+   } else if (page.id === 'page3') {
+     page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+   }
+
+   if (page.id === 'page3') {
+     page.querySelector('#push-button').onclick = function() {
+       document.querySelector('#myNavigator').pushPage('profile.html', {data: {title: 'Profile'}});
+     };
+   } else if (page.id === 'page4') {
+     page.querySelector('ons-toolbar .center').innerHTML = page.data.title;
+   }
+
+ });

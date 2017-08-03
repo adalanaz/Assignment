@@ -47,12 +47,20 @@ function closeCommentModel() {
 // -
 //   Profile Model
 // -
-function showProfilePage() {
+function showProfileSettings() {
   var modal = document.querySelector('#profile');
   modal.show();
 }
 //------------------------------------------------------------------------------------------------------
 
+// -
+// Close Model function
+// -
+function closeProfileSettings() {
+  var modal = document.querySelector('#profile');
+  modal.hide();
+}
+//------------------------------------------------------------------------------------------------------
 
 function testClick() {
   console.log('click working');
@@ -61,9 +69,16 @@ function testClick() {
 
  // -
  // Page One Event Listeners
+ // - This Event Listener function is used to stack pages on a page stack for navigation purposes throughout the application
  // -
  document.addEventListener('init', function(event) {
    var page = event.target;
+
+   if (page.id === 'page0') {
+       page.querySelector('#push-button').onclick = function() {
+       document.querySelector('#myNavigator').pushPage('home.html', {data: {title: 'Posts'}});
+     };
+   }
 
    if (page.id === 'page1') {
        page.querySelector('#push-button').onclick = function() {

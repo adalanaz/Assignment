@@ -42,3 +42,33 @@ img{
 .newPostModel input{
   color: #fff !important;
 }
+#profileSection img{
+  margin: 0 auto;
+  display: block;
+  width: 150px;
+  padding: 15px 10px;
+}
+#profileSection ul{
+  list-style: none;
+    padding-left: 0;
+}
+
+.latestComment{
+  padding: 10px 20px;
+}
+
+#login{
+  padding: 50px 10px;
+  border-bottom: 1px solid black;
+}
+#login ons-col{
+  display: block;
+  margin: 0 auto;
+}
+#register ons-col{
+  display: block;
+  margin: 0 auto;
+}
+#login ons-input{
+  display: block
+}

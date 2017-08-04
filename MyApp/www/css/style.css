@@ -72,3 +72,11 @@ img{
 #login ons-input{
   display: block
 }
+#login, #register ons-input{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+#login ons-input{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}

@@ -58,7 +58,7 @@ img{
 }
 
 #login{
-  padding: 50px 10px;
+  padding: 20px 10px;
   border-bottom: 1px solid black;
 }
 #login ons-col{
@@ -71,4 +71,12 @@ img{
 }
 #login ons-input{
   display: block
+}
+#login, #register ons-input{
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+#login ons-input{
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
